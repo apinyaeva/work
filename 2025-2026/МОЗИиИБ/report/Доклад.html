@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Converted from Markdown</title>
+  <style>
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+      line-height: 1.6; 
+      max-width: 800px; 
+      margin: 0 auto; 
+      padding: 20px;
+      color: #333;
+    }
+    h1, h2, h3 { color: #333; margin-top: 1.5em; margin-bottom: 0.5em; }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.2em; }
+    code { 
+      background: #f4f4f4; 
+      padding: 2px 4px; 
+      border-radius: 3px; 
+      font-family: 'Courier New', monospace;
+    }
+    pre { 
+      background: #f4f4f4; 
+      padding: 15px; 
+      border-radius: 5px; 
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      line-height: 1.4;
+    }
+    blockquote { 
+      border-left: 4px solid #ddd; 
+      margin: 1em 0; 
+      padding-left: 20px; 
+      color: #666;
+      font-style: italic;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+    ul, ol {
+      margin: 1em 0;
+      padding-left: 2em;
+    }
+    li {
+      margin: 0.5em 0;
+    }
+  </style>
+</head>
+<body>
+<h1>РОССИЙСКИЙ УНИВЕРСИТЕТ ДРУЖБЫ НАРОДОВ</h1>
+<h3>Факультет физико-математических и естественных наук</h3>
+<h3>Кафедра прикладной информатики и теории вероятностей</h3>
+<h1>РЕФЕРАТ</h1>
+<h1>ПО ТЕМЕ &quot;Установление подлинности запрос-ответ&quot;</h1>
+<h3>дисциплина: Математические основы защиты информации и информационной безопасности</h3>
+<h3>Студент: Пиняева Анна Андреевна</h3>
+<h3>Группа: НПИмд-01-24</h3>
+<h3>МОСКВА</h3>
+<h3>2025</h3>
+<hr>
+<h1>Актуальность</h1>
+<ul>
+<li><p>Рост киберугроз: фишинг, MITM-атаки, утечки паролей.</p>
+</li>
+<li><p>Модель Zero Trust требует строгой проверки подлинности.</p>
+</li>
+<li><p>Проблема: Как доказать право на доступ, не раскрывая секрет?</p>
+</li>
+</ul>
+<p>Решение: Метод «Вызов-Ответ» (Challenge-Response).</p>
+<hr>
+<h1>Понятие аутентификации и её факторы</h1>
+<p>Аутентификация — подтверждение того, что субъект является тем, за кого себя выдает.</p>
+<p>Три фактора аутентификации:</p>
+<ul>
+<li><p>Фактор знания — “что пользователь знает”</p>
+</li>
+<li><p>Фактор владения — “что у пользователя есть”</p>
+</li>
+<li><p>Биометрический фактор — “кем является пользователь”</p>
+</li>
+</ul>
+<hr>
+<h1>Метод «вызов–ответ». Историческая справка</h1>
+<p><strong>1970-е – первые идеи</strong></p>
+<p><strong>1980-е – стандартизация и первые реализации</strong></p>
+<p><strong>1990-е – переход к публичным ключам</strong></p>
+<p><strong>2000-е – борьба с фишингом и массовое внедрение</strong></p>
+<p><strong>2010-е – рождение современных безпарольных стандартов</strong></p>
+<p><strong>2020-е – глобальный переход на Passkeys</strong></p>
+<hr>
+<h1>Метод «вызов–ответ». Базовый принцип</h1>
+<p><img src="https://sun9-31.userapi.com/s/v1/ig2/r2cLy7LPrATCZkG3dcJKyNWNZJ_7yz150VvPerGwx8BkRFjbTLqoOX7PJ2UgNCPM7HMVCJsOSEA8jQ7H_ZV6rQ3E.jpg?quality=95&as=32x48,48x72,72x108,108x162,160x240,240x360,360x540,480x720,540x810,640x960,720x1080,1024x1536&from=bu&u=grTFIVrxnrYn1DgAeG_ehn7fqvDtfglr_GxsS6Z-QPg&cs=1024x0" alt="Рис.1 Общая схема метода "вызов-ответ""></p>
+<hr>
+<h1>Метод «вызов–ответ». Использование шифра с симметричным ключом</h1>
+<p>Секретность здесь - открытый ключ засекречивания, известный и претендент у и
+верификатору. Функция - алгоритм шифрования, с помощью которого обрабатывается вызов перед
+посылкой ответа.</p>
+<p>Подход 1. </p>
+<p><img src="https://sun9-1.userapi.com/s/v1/ig2/6skivn0IKp0gqSD1BK-R4kt3-NG_60M5TyVCdqIfLuPOXFJ7YafMWM4ZhMBmabLd710Q3LSQkikGi4P_Fg9Cgel4.jpg?quality=95&as=32x20,48x31,72x46,108x69,160x102,240x153,360x230,480x306,540x345,640x409,720x460,1080x689,1280x817,1440x919,1460x932&from=bu&cs=1460x0" alt="Рис.2 Принцип первого подхода"></p>
+<p>Подход 2. </p>
+<p><img src="https://sun9-24.userapi.com/s/v1/ig2/b3u9LQXr6ayHcdtzS8JPXiKYNj0_BFA4xML0yRwA38boe_Q7qmGfVXLOby05ZU54diT3MifaKxo7n_MYq2fUiixt.jpg?quality=95&as=32x11,48x16,72x25,108x37,160x55,240x82,360x123,480x164,540x184,640x218,720x246,1080x368,1280x437,1440x491,1460x498&from=bu&cs=1460x0" alt="Рис.3 Принцип второго подхода"></p>
+<p>Подход 3. </p>
+<p><img src="https://sun9-31.userapi.com/s/v1/ig2/G34nWpdSWZPqq7fBD-FSBDm6D2Wuuy-tCwN9HGBToaKVk8C60nqVMyOJogs_KdMZR12KZ0LpbzYgsUm1I-fRVDvH.jpg?quality=95&as=32x21,48x31,72x46,108x70,160x103,240x155,360x232,480x310,540x348,640x413,720x465,1080x697,1280x826,1440x929,1460x942&from=bu&cs=1460x0" alt="Рис.2.4 Принцип третьего подхода"></p>
+<hr>
+<h1>Метод «вызов–ответ». Использование функций ключевого хэширования</h1>
+<p>Такой подход обладает важным преимуществом: он обеспечивает не только проверку подлинности, но и контроль целостности сообщений, поскольку результат вычисления МАС зависит как от данных, так и от секретного ключа.</p>
+<p><img src="https://sun9-44.userapi.com/s/v1/ig2/0Bk9AgO9xRcm44-MAi4VKvavHmq9A-WKXetImlXLoHmgI9gGdZSeRkWNG8t27perS7h8vlymLOTdiVykVNBMiLoh.jpg?quality=95&as=32x11,48x16,72x25,108x37,160x55,240x83,360x124,480x165,540x186,640x220,720x248,1080x371,1280x440,1440x495,1460x502&from=bu&cs=1460x0" alt="Рис.5 Схема формирования ответа на вызов"></p>
+<hr>
+<h1>Метод «вызов–ответ». Использование цифровой подписи</h1>
+<p>В этом случае секретом является закрытый ключ претендента, а его открытый ключ доступен верификатору и может быть опубликован. Задача претендента — доказать владение закрытым ключом, соответствующим известному открытому ключу.</p>
+<p>Подход 1. </p>
+<p><img src="https://sun9-9.userapi.com/s/v1/ig2/RmUpCH4_hlGLZlEyvVKEKrwKvMncB3dyjhOJE4S8Sd_aaQ-1FiSUT03DPLNysGBS8OdDv7Z9L3cbMUiFiJfVclQF.jpg?quality=95&as=32x19,48x28,72x42,108x64,160x94,240x141,360x212,480x283,540x318,640x377,720x424,1080x636,1280x754,1440x848,1460x860&from=bu&cs=1460x0" alt="Рис.2.8 Схема первого подхода"></p>
+<p>Подход 2.</p>
+<p><img src="https://sun6-23.userapi.com/s/v1/ig2/pYo4xy7xOVcoja6xmug2_kzE5Uo4KIUZ_9y2cSxZ629Rq2XFOKhv7n2n30JVWOcSuvqEewzv1LP2TFv7ES67y2HO.jpg?quality=95&as=32x25,48x38,72x57,108x86,160x127,240x191,360x287,480x382,540x430,640x509,720x573,1080x860,1280x1019,1440x1146,1460x1162&from=bu&cs=1460x0" alt="Рис.2.9 Схема второго подхода"></p>
+<hr>
+<h1>Метод «вызов–ответ». Проблемы и ограничения</h1>
+<ol>
+<li>Зависимость от качества генератора случайных чисел</li>
+<li>Проблема хранения секретов</li>
+<li>Уязвимость к MITM при отсутствии взаимной аутентификации</li>
+<li>Требования к синхронизации времени</li>
+<li>Зависимость от каналов и протоколов передачи</li>
+<li>Уязвимости реализации (implementation flaws)</li>
+<li>Проблемы масштабируемости</li>
+<li>Ограничения производительности</li>
+<li>Зависимость от криптографической стойкости используемых примитивов</li>
+<li>Влияние человеческого и организационного фактора</li>
+</ol>
+<h1>Заключение</h1>
+<p>Выводы:</p>
+<ul>
+<li>Мощный метод для доказательства владения секретом без его раскрытия.</li>
+<li>Гибкий: реализуем через симметричные/асимметричные схемы, подписи, хеши.</li>
+<li>Защищает от перехвата, повторного использования и фишинга.</li>
+</ul>
+<p>Актуальность:</p>
+<ul>
+<li><p>Основа современных стандартов (FIDO2, WebAuthn, Passkeys).</p>
+</li>
+<li><p>Ключевой компонент архитектур Zero Trust.</p>
+</li>
+</ul>
+<hr>
+<h2>Список используемых источников</h2>
+<ol>
+<li>Кушниренко, А. Г. Криптографические методы защиты информации: учебное пособие. — Санкт-Петербург: Университет ИТМО, 2018. — 210 с.  </li>
+<li>Объектная аутентификация: лекция 15 // Материалы курса “Математические основы защиты информации”. — mathsec, 2020. (файл: mathsec_lection15-object-authentication_16x9.pdf)  </li>
+<li>Лекция «Установление подлинности объекта» // Учебные материалы по криптографии. — 2019. (файл: Установление подлинности объекта.pdf)  </li>
+<li>Stallings, W. Cryptography and Network Security: Principles and Practice. — 7th ed. — Pearson, 2017. — 752 p.  </li>
+<li>Kaufman, C., Perlman, R., Speciner, M. Network Security: Private Communication in a Public World. — 3rd ed. — Prentice Hall, 2016. — 888 p.  </li>
+<li>Menezes, A., van Oorschot, P., Vanstone, S. Handbook of Applied Cryptography. — CRC Press, 1996. — 816 p.  </li>
+<li>Wikipedia contributors. Challenge–response authentication // Wikipedia, The Free Encyclopedia. URL: <a href="https://en.wikipedia.org/wiki/Challenge%E2%80%93response_authentication">https://en.wikipedia.org/wiki/Challenge–response_authentication</a>   </li>
+<li>NIST Special Publication 800-63-3. Digital Identity Guidelines. — NIST, 2017. URL: <a href="https://pages.nist.gov/800-63-3">https://pages.nist.gov/800-63-3</a>  </li>
+<li>RFC 4226 — OATH HOTP Algorithm: An HMAC-Based One-Time Password Algorithm. — IETF, 2005  </li>
+<li>RFC 6238 — TOTP: Time-Based One-Time Password Algorithm. — IETF, 2011  </li>
+<li>Переводная статья: Challenge–response authentication // Wikipedia (RU). URL: <a href="https://translated.turbopages.org/...">https://translated.turbopages.org/...</a> (дата обращения: 20.01.2025)  </li>
+<li>Studfile. Аутентификация. Методы и протоколы. URL: <a href="https://studfile.net/preview/321440/page:4/">https://studfile.net/preview/321440/page:4/</a>  </li>
+<li>Лампорта, Л. One-Time Password Authentication. — Bell Labs Technical Report, 1981  </li>
+<li>Dworkin, M. Recommendation for Block Cipher Modes of Operation. — NIST SP 800-38A, 2001  </li>
+<li>ISO/IEC 9798-4. Entity Authentication Mechanisms Using Symmetric Encryption Algorithms. — International Organization for Standardization, 1999</li>
+</ol>
+
+</body>
+</html>
