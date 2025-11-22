@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Converted from Markdown</title>
+  <style>
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+      line-height: 1.6; 
+      max-width: 800px; 
+      margin: 0 auto; 
+      padding: 20px;
+      color: #333;
+    }
+    h1, h2, h3 { color: #333; margin-top: 1.5em; margin-bottom: 0.5em; }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.2em; }
+    code { 
+      background: #f4f4f4; 
+      padding: 2px 4px; 
+      border-radius: 3px; 
+      font-family: 'Courier New', monospace;
+    }
+    pre { 
+      background: #f4f4f4; 
+      padding: 15px; 
+      border-radius: 5px; 
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      line-height: 1.4;
+    }
+    blockquote { 
+      border-left: 4px solid #ddd; 
+      margin: 1em 0; 
+      padding-left: 20px; 
+      color: #666;
+      font-style: italic;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+    ul, ol {
+      margin: 1em 0;
+      padding-left: 2em;
+    }
+    li {
+      margin: 0.5em 0;
+    }
+  </style>
+</head>
+<body>
+<h1>РОССИЙСКИЙ УНИВЕРСИТЕТ ДРУЖБЫ НАРОДОВ</h1>
+<h3>Факультет физико-математических и естественных наук</h3>
+<h3>Кафедра прикладной информатики и теории вероятностей</h3>
+<h1>ПРЕЗЕНТАЦИЯ</h1>
+<h1>ПО ЛАБОРАТОРНОЙ РАБОТЕ  № 6</h1>
+<h3>дисциплина: Математические основы защиты информации и информационной безопасности</h3>
+<h3>Студент: Пиняева Анна Андреевна</h3>
+<h3>Группа: НПИмд-01-24</h3>
+<h3>МОСКВА</h3>
+<h3>2025</h3>
+<hr>
+<h1>Цель работы</h1>
+<p>Знакомство и реализация алгоритма разложения числа на множители.</p>
+<hr>
+<h1>Ход работы</h1>
+<h3>1. Бинарный алгоритм Евклида</h3>
+<pre><code class="language-julia">function evklidBin(a, b)
+    if a == 0 || b == 0
+        return 0
+    elseif a == b
+        return a
+    elseif a &lt; 0
+        a *= -1
+    elseif b &lt; 0
+        b *= -1
+    end
+    g = 1
+    u = a; v = b
+    while u &gt; 0
+        if u % 2 == 0 &amp;&amp; v % 2 == 0
+            g *= 2
+            u = round(Int, u/2)
+            v = round(Int, v/2)
+        elseif u % 2 == 0
+            u = round(Int, u/2)
+        elseif v % 2 == 0
+            v = round(Int, v/2)
+        elseif u &gt;= v
+            u = u - v
+        else
+            v = v - u
+        end
+    end
+    g *= v
+    return g
+end
+</code></pre>
+<hr>
+<h3>2. p-метод Полларда</h3>
+<pre><code class="language-julia">function metodPollarda(n, c, any_func::Function)
+    if n % 2 == 0
+        return 2, round(Int, n/2)
+    end
+    a = c; b = c
+    i = 0
+    p = 0
+    while p == 0 &amp;&amp; i &lt; 100
+        a = any_func(a)
+        b = any_func(any_func(b))
+        d = evklidBin(a-b, n)
+        if d &gt; 1
+            return d, round(Int, n/d)
+        end
+        i += 1
+    end
+    return &quot;Делитель не найден&quot;
+end
+</code></pre>
+<hr>
+<h3>3. Тестирование</h3>
+<pre><code class="language-julia">n = 222
+c = 1
+metodPollarda(n, c, x -&gt; (x^2 + 5) % n)
+</code></pre>
+<p>Результат тестирования представлен на рис.1 </p>
+<p><img src="https://sun9-67.userapi.com/s/v1/ig2/32ERS-8yKGM8M6bvwG1xxyJYhr_M0D_8rIgv4n_EwiNymzLwdko3-5NnoCeo2FveqOMK9x4fHJHg8uVxrKtWVjos.jpg?quality=95&as=32x10,48x16,72x23,108x35,160x52,240x78,360x117,480x157,540x176,640x209,720x235,840x274&from=bu&cs=840x0" alt="Рис. 1 Тестирование:"></p>
+<hr>
+<h1>Вывод:</h1>
+<p>В ходе данной работы мной были изучен и реализован  p-метод Полларда для разложения числа на множетели. Написан программный код на языке Julia и протестирован. </p>
+
+</body>
+</html>
