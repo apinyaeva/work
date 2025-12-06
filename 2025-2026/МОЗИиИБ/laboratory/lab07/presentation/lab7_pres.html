@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Converted from Markdown</title>
+  <style>
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+      line-height: 1.6; 
+      max-width: 800px; 
+      margin: 0 auto; 
+      padding: 20px;
+      color: #333;
+    }
+    h1, h2, h3 { color: #333; margin-top: 1.5em; margin-bottom: 0.5em; }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.2em; }
+    code { 
+      background: #f4f4f4; 
+      padding: 2px 4px; 
+      border-radius: 3px; 
+      font-family: 'Courier New', monospace;
+    }
+    pre { 
+      background: #f4f4f4; 
+      padding: 15px; 
+      border-radius: 5px; 
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      line-height: 1.4;
+    }
+    blockquote { 
+      border-left: 4px solid #ddd; 
+      margin: 1em 0; 
+      padding-left: 20px; 
+      color: #666;
+      font-style: italic;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+    ul, ol {
+      margin: 1em 0;
+      padding-left: 2em;
+    }
+    li {
+      margin: 0.5em 0;
+    }
+  </style>
+</head>
+<body>
+<h3>Факультет физико-математических и естественных наук</h3>
+<h3>Кафедра прикладной информатики и теории вероятностей</h3>
+<h1>ПРЕЗЕНТАЦИЯ</h1>
+<h1>ПО ЛАБОРАТОРНОЙ РАБОТЕ  № 7</h1>
+<h3>дисциплина: Математические основы защиты информации и информационной безопасности</h3>
+<h3>Студент: Пиняева Анна Андреевна</h3>
+<h3>Группа: НПИмд-01-24</h3>
+<h3>МОСКВА</h3>
+<h3>2025</h3>
+<hr>
+<h1>Цель работы</h1>
+<p>Ознакомиться с алгоритмом дискретного логарифмирования в конечном поле.</p>
+<hr>
+<h1>Ход работы</h1>
+<h2>Реализовать алгоритм дискретного логарифмирования в конечном поле</h2>
+<pre><code class="language-julia">function searching_for_gamma(a_diff, b_diff, p)
+    for i in 1:p
+        if b_diff*i %p == a_diff
+            return i
+        end
+    end
+    return &quot;Not found&quot;
+end 
+function new_xab(x, a, b, p, alph, bett)
+    if x % 3 == 0
+        return x^2 % p, a*2 % (p-1), b*2 % (p-1)
+    elseif x % 3 == 1
+        return x*alph % p, (a+1) % (p-1), b
+    else
+        return x*bett % p, a, (b+1) % (p-1)
+    end
+end
+function metodPollarda(p, alp, bet)# , any_func::Function)
+    if p % 2 == 0
+        return &quot;Incorrect input: p must be simple&quot;
+    end
+    a_i = 0; b_i = 0; x_i = 1
+    a_2i = 0; b_2i = 0; x_2i = 1
+    i = 1
+    tries = 1000
+    data = zeros(Int64, (3, tries))
+    data2 = zeros(Int64, (3, tries))
+    while i &lt;= tries
+        x_i, a_i, b_i = new_xab(x_i, a_i, b_i, p, alp, bet)
+        data[:, i] = [x_i, a_i, b_i]
+        
+        x_2i, a_2i, b_2i = new_xab(x_2i, a_2i, b_2i, p, alp, bet)
+        x_2i, a_2i, b_2i = new_xab(x_2i, a_2i, b_2i, p, alp, bet)
+        data2[:, i] = [x_2i, a_2i, b_2i]
+
+        if x_i == x_2i
+            display(data[:, 1:i])
+            display(data2[:, 1:i])
+            r = b_2i - b_i
+            if r == 0
+                return &quot;Не найдено&quot;
+            else
+                return searching_for_gamma(a_i - a_2i, r, p)
+            end
+        end
+        i += 1
+    end
+    return &quot;Делитель не найден&quot;
+end
+</code></pre>
+<hr>
+<h3>Тестирование</h3>
+<pre><code class="language-julia">p=107
+alp=10
+bet=64
+metodPollarda(p,alp,bet)
+
+p=1011
+alp=7
+bet=3
+metodPollarda(p,alp,bet)
+</code></pre>
+<p>Результат тестирования представлен на рис.1 </p>
+<p><img src="https://sun9-63.userapi.com/s/v1/ig2/r5c29avD8J6t-v8HpeCVm7HUXfFLgxshHmNmtIkIym2rdjuKVg-zo19VJahdUggJ8UepZPCOW_iNRDpjBEaU8U-_.jpg?quality=95&as=32x22,48x34,72x51,108x76,160x112,240x168,360x253,480x337,540x379,640x449,720x505,1080x758,1280x898,1440x1011,1556x1092&from=bu&cs=1556x0" alt="Рис. 1 Тестирование:"></p>
+<hr>
+<p>Вывод: В результате работы мы ознакомились с алгоритмом дискретного логарифмирования в конечном поле и реализовали его на языке программирования <code>Julia</code>.</p>
+
+</body>
+</html>
