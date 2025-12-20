@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Converted from Markdown</title>
+  <style>
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+      line-height: 1.6; 
+      max-width: 800px; 
+      margin: 0 auto; 
+      padding: 20px;
+      color: #333;
+    }
+    h1, h2, h3 { color: #333; margin-top: 1.5em; margin-bottom: 0.5em; }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    h3 { font-size: 1.2em; }
+    code { 
+      background: #f4f4f4; 
+      padding: 2px 4px; 
+      border-radius: 3px; 
+      font-family: 'Courier New', monospace;
+    }
+    pre { 
+      background: #f4f4f4; 
+      padding: 15px; 
+      border-radius: 5px; 
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      line-height: 1.4;
+    }
+    blockquote { 
+      border-left: 4px solid #ddd; 
+      margin: 1em 0; 
+      padding-left: 20px; 
+      color: #666;
+      font-style: italic;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1em 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f5f5f5;
+      font-weight: bold;
+    }
+    ul, ol {
+      margin: 1em 0;
+      padding-left: 2em;
+    }
+    li {
+      margin: 0.5em 0;
+    }
+  </style>
+</head>
+<body>
+<h1>РОССИЙСКИЙ УНИВЕРСИТЕТ ДРУЖБЫ НАРОДОВ</h1>
+<h3>Факультет физико-математических и естественных наук</h3>
+<h3>Кафедра прикладной информатики и теории вероятностей</h3>
+<h1>Презентация</h1>
+<h1>ПО ЛАБОРАТОРНОЙ РАБОТЕ  № 8</h1>
+<h3>дисциплина: Математические основы защиты информации и информационной безопасности</h3>
+<h3>Студент: Пиняева Анна Андреевна</h3>
+<h3>Группа: НПИмд-01-24</h3>
+<h3>МОСКВА</h3>
+<h3>2025</h3>
+<hr>
+<h1>Цель работы</h1>
+<p>Ознакомиться с алгоритмами и реализовать их. </p>
+<hr>
+<h1>Ход работы</h1>
+<h2>1. Сложение неотрицательных целых чисел</h2>
+<pre><code class="language-julia">function sum_accurate(u, v, b=10)
+    k = 0
+    u_str = parse.(Integer, only.(split(string(u), &quot;&quot;))); v_str = parse.(Integer, only.(split(string(v), &quot;&quot;)))
+    n_u = length(u_str); n_v = length(v_str)
+    j = max(n_u, n_v)
+    w = zeros(Int64, j+1)
+    if n_u &lt; n_v
+        temp = zeros(Int64, j)
+        temp[n_v - n_u + 1:j] = u_str
+        u_str = [i for i in temp]
+    elseif n_v &lt; n_u
+        temp = zeros(Int64, j)
+        temp[n_u - n_v + 1:j] = v_str
+        v_str = [i for i in temp]
+    end
+    while j != 0
+        k_temp = (u_str[j] + v_str[j] + k) % b
+        w[j+1] = k_temp
+        k = round(Int, (u_str[j] + v_str[j] + k - k_temp) / b)
+        j -= 1
+    end
+    w[1] = k
+    return parse(Int, join(string.(w)))
+end 
+</code></pre>
+<hr>
+<h2>2. Вычитание неотрицательных целых чисел</h2>
+<pre><code class="language-julia">function raz_accurate(u, v, b=10)
+    if u &lt; v
+        return string(u) * &quot; should be greater than &quot; * string(v)
+    end
+    k = 0
+    u_str = parse.(Integer, only.(split(string(u), &quot;&quot;))); v_str = parse.(Integer, only.(split(string(v), &quot;&quot;)))
+    n_u = length(u_str); n_v = length(v_str)
+    j = max(n_u, n_v)
+    w = zeros(Int64, j)
+    if n_v &lt; n_u
+        temp = zeros(Int64, j)
+        temp[n_u - n_v + 1:j] = v_str
+        v_str = [i for i in temp]
+    end
+    while j != 0
+        if u_str[j] &lt; v_str[j]
+            k = b
+            u_str[j-1] -= 1
+        else
+            k = 0
+        end
+        k_temp = (u_str[j] - v_str[j] + k) % b
+        w[j] += k_temp
+        j -= 1
+    end
+    return parse(Int, join(string.(w)))
+end 
+</code></pre>
+<hr>
+<h2>3. Умножение неотрицательных целых чисел столбиком¶</h2>
+<pre><code class="language-julia">function umn_accurate(u, v, b=10)
+    k = 0
+    u_str = parse.(Integer, only.(split(string(u), &quot;&quot;))); v_str = parse.(Integer, only.(split(string(v), &quot;&quot;)))
+    i = length(u_str); j = length(v_str)
+    w = zeros(Int64, i + j)
+    while j &gt; 0
+        i = length(u_str)
+        k = 0
+        while i &gt; 0
+            k_temp = u_str[i] * v_str[j] + w[i+j] + k
+            w[i+j] = k_temp % b
+            k = round(Int, (k_temp - w[i+j]) / b)
+            i -= 1
+        end
+        w[j] = k
+        j -= 1
+    end
+    return parse(Int, join(string.(w)))
+end
+</code></pre>
+<hr>
+<h2>4. Быстрый столбик</h2>
+<pre><code class="language-julia">function umn_fast(u, v, b=10)
+    u_str = parse.(Integer, only.(split(string(u), &quot;&quot;))); v_str = parse.(Integer, only.(split(string(v), &quot;&quot;)))
+    n = length(u_str); m = length(v_str)
+    w = zeros(Int64, n + m)
+    t = 0
+    for s in 0:m+n-1
+        for i in 0:s
+            if n-i &lt;= 0 || m-s+i &lt;= 0
+                continue
+            end
+            t += u_str[n-i] * v_str[m-s+i]
+        end
+        w[n+m-s] = t % b
+        t = round(Int64, (t - w[n+m-s]) / b)
+    end
+    return parse(Int, join(string.(w)))
+end
+</code></pre>
+<hr>
+<h3>Тестирование</h3>
+<pre><code class="language-julia">sum_accurate(12533,989)
+raz_accurate(12533,989)
+umn_accurate(12533,989)
+umn_fast(12533,989)
+</code></pre>
+<p>Результат тестирования представлен на рис.1 </p>
+<p><img src="https://sun9-23.userapi.com/s/v1/ig2/QNYS12Eek5gWlWZRO4K7ZZAfVmRAZ9JndSq7cPcGI2rn3cLhbUvN_t4rEphcvtHWTmZH18xmSlv7JjQtEr4pysVz.jpg?quality=95&as=32x25,48x38,72x57,108x85,160x126,240x189,360x284,480x379,540x426,640x505,720x568,1080x852,1280x1010,1384x1092&from=bu&u=KhuVJVrxMrKRYWWuhuBU1iotOLE3S1m2tQhV80J4RXM&cs=1384x0" alt="Рис. 1 Тестирование:"></p>
+<p>________-</p>
+<h4>Вывод: В результате работы мы ознакомились с алгоритмами и реализовали их на языке программирования <code>Julia</code>.</h4>
+
+</body>
+</html>
